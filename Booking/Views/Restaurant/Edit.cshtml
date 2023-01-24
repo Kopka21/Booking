@@ -1,0 +1,20 @@
+﻿@model Booking.Models.Restaurant
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form class="form-group" asp-action="EditPost" asp-controller="Restaurant">
+            
+        <p> <input type="text" asp-for="Id" value="@Model.Id" hidden="hidden"/></p>
+        <p> <input type="text" asp-for="City" value="@Model.City"/></p>
+        <p> <input type="text" asp-for="Street" value="@Model.Street"/></p>
+        <p> <input type="text" asp-for="NumberOfBuilding" value="@Model.NumberOfBuilding"/></p>
+        <p> <input type="text" asp-for="PostalCode" value="@Model.PostalCode"/></p>
+
+        <p>
+            <input type="submit" class="btn btn-success" />
+        </p>
+
+</form>

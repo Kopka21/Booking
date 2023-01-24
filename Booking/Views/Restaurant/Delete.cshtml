@@ -1,0 +1,19 @@
+﻿@model Booking.Models.Restaurant
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+
+<form asp-action="DeletePost" asp-controller="Restaurant">
+    <input asp-for="Id" hidden/>
+    <p><input type="text" placeholder="@Model.Id" disabled="disabled"/></p>
+    <p><input type="text" placeholder="@Model.City" disabled="disabled"/></p>
+    <p><input type="text" placeholder="@Model.Street" disabled="disabled"/></p>
+    <p><input type="text" placeholder="@Model.NumberOfBuilding" disabled="disabled"/></p>
+    <p><input type="text" placeholder="@Model.PostalCode" disabled="disabled"/></p>
+
+    <p><a class="btn btn-primary">Powrót</a></p>
+    <p><input class="btn btn-danger"  type="submit" /></p>
+</form>

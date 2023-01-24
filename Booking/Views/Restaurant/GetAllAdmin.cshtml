@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Booking.Models.Restaurant>
+@{
+    ViewData["Title"] = "GetAllAdmin";
+}
+<a class="btn btn-primary"  asp-action="Create" asp-controller="Restaurant" > Stwórz</a>
+<table class="table">
+    <thead>
+            <tr>
+                <th>Id</th>
+                <th>Miasto</th>
+                <th>Ulica</th>
+                <th>Numer Budynku</th>
+                <th>Kod pocztowy</th>
+                <th>Akcja</th>
+            </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.City</td>
+                <td>@item.Street</td>
+                <td>@item.NumberOfBuilding</td>
+                <td>@item.PostalCode</td>
+
+                <td class="td-text">
+                        <a class="btn btn-primary" asp-controller="Restaurant"  asp-route-Id="@item.Id" asp-action="Edit"> Edit</a>
+                        <a class="btn btn-danger" asp-controller="Restaurant"  asp-route-Id="@item.Id" asp-action="Delete"> Delete</a>
+                        <a class="btn btn-primary" asp-controller="Restaurant"   asp-route-Id="@item.Id"  asp-action="Details"> Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,16 @@
+﻿@model Booking.ModelsDto.RestaurantDto
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<form asp-action="CreatePost" asp-controller="Restaurant" method="post">
+
+    <p><input type="text" asp-for="City"  placeholder="Miasto"/></p>
+    <p><input  type="text"  asp-for="Street"  placeholder="ulica"/></p>
+    <p><input type="text"   asp-for="PostalCode"  placeholder="Kod pocztowy"/></p>
+    <p><input  type="text" asp-for="NumberOfBuilding"  placeholder="Numer"/></p>
+   
+    <p><input class="btn btn-primary"  type="submit" /></p>
+</form>

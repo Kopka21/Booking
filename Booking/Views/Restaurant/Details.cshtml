@@ -1,0 +1,53 @@
+﻿@model Booking.Models.Restaurant
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Szczegóły restauracji</h1>
+
+<p><input  type="text" value="@Model.Id" disabled="disabled"/></p>
+<p><input  type="text" value="@Model.City" disabled="disabled" /></p>
+<p><input  type="text" value="@Model.Street" disabled="disabled" /></p>
+<p><input  type="text" value="@Model.NumberOfBuilding" disabled="disabled" /></p>
+<p><input  type="text" value="@Model.PostalCode" disabled="disabled" /></p>
+
+
+
+<a class="btn btn-primary" asp-route-Id="@Model.Id" asp-action="CreateTable" asp-controller="Table">Stwórz stolik</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Siedzenia</th>
+            <th>NumerStolika</th>
+            <th>Status</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var item in Model.Tables)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.NumberOfSeats</td>
+                <td>@item.Number</td>
+                @if(@item.Status == true)
+                {
+                    <td style="color:gree n">Wolne</td>
+
+                }
+                else
+                {
+                     <td style="color:red">Zajęte</td>
+                }
+                <td>
+                        <a class="btn btn-primary" asp-controller="Table"  asp-route-Id="@item.Id" asp-action="Edit"> Edit</a>
+                        <a class="btn btn-danger" asp-controller="Table"  asp-route-Id="@item.Id" asp-action="Delete"> Delete</a>
+                        <a class="btn btn-danger" asp-controller="Table"  asp-route-Id="@item.Id" asp-action="DeleteBooking"> Delete</a>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
