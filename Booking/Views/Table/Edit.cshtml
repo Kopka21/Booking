@@ -1,0 +1,17 @@
+﻿@model Booking.Models.Table
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form class="form-group" asp-action="EditPost" asp-controller="Table">
+
+    <p> <input type="number" asp-for="RestaurantId" value="@Model.RestaurantId" hidden="hidden" /></p>
+    <p> <input type="text" asp-for="Id" value="@Model.Id" hidden="hidden" /></p>
+    <p> <input type="text" asp-for="NumberOfSeats" value="@Model.NumberOfSeats" /></p>
+    <p>
+        <input type="submit" class="btn btn-success" />
+    </p>
+
+</form>

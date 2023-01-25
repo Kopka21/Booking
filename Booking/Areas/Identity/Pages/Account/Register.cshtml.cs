@@ -29,13 +29,15 @@ namespace Booking.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,6 +45,7 @@ namespace Booking.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -104,6 +107,12 @@ namespace Booking.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            if (!_roleManager.Roles.Any(r => r.Name == "user") && !_roleManager.Roles.Any(r => r.Name == "admin"))
+            {
+                await _roleManager.CreateAsync(new IdentityRole("user"));
+                await _roleManager.CreateAsync(new IdentityRole("admin"));
+            }
+
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -133,6 +142,9 @@ namespace Booking.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    var newUser = await _userManager.FindByNameAsync(Input.Email);
+
+                    await _userManager.AddToRoleAsync(newUser, "user");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

@@ -1,10 +1,12 @@
 ﻿using Booking.Data;
 using Booking.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Booking.Controllers
 {
+    [Authorize(Policy ="Admin")]
     public class RestaurantController : Controller
     {
         private readonly ApplicationDbContext _dbContext;

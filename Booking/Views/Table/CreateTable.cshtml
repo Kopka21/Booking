@@ -1,0 +1,19 @@
+﻿@model Booking.ModelsDto.TableDto
+@{
+    ViewData["Title"] = "CreateTable";
+}
+
+<h1>CreateTable</h1>
+
+<form asp-action="CreatePost" asp-controller="Table" method="post">
+
+
+    <p><input type="number" asp-for="RestaurantId" value="@Model.RestaurantId" hidden="hidden" /></p>
+
+    <label>Podaj ilość miejsc</label>
+    <p><input type="number" asp-for="NumberOfSeats" /></p>
+    <p><input type="number" asp-for="Number" /></p>
+
+    <p><input class="btn btn-primary" type="submit" /></p>
+
+</form>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Booking.Models.Table>
+
+@{
+    ViewData["Title"] = "GetTables";
+}
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Stolik nr @item.Number</h5>
+                        <p class="card-text">Ilość miejsc: @item.NumberOfSeats</p>
+                        <a class="btn btn-primary" asp-action="Book" asp-route-Id="@item.Id" asp-controller="Table"> Zarezerwuj</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

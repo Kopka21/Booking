@@ -1,8 +1,24 @@
-﻿@{
+﻿@model IEnumerable<Booking.Models.Restaurant>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    @foreach (var restaurant in Model)
+    {
+        <div class="col-4">
+            <div class="card">
+                <img class="card-img-top" src="./images/RestaurantLogo.jpg" alt="Card image cap">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Restauracja</h5>
+                    <p class="card-text">
+                        @restaurant.Street @restaurant.NumberOfBuilding <br>
+                        @restaurant.PostalCode @restaurant.City
+                    </p>
+                    <p>Ilość wolnych stolików: @restaurant.Tables.Count()</p>
+                    <a asp-action="GetTables" asp-controller="Table" asp-route-Id="@restaurant.Id" class="btn btn-primary">Rezerwuj stolik</a>
+                </div>
+            </div>
+        </div>
+    }
 </div>

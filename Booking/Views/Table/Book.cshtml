@@ -1,0 +1,16 @@
+﻿@model Booking.Models.Table
+@{
+    ViewData["Title"] = "Book";
+}
+<form class="form-control" asp-controller="Table" asp-action="BookPost" method="post">
+
+    <input type="text" asp-for="Id" hidden="hidden" />
+    <label>Numer Stolika</label>
+    <p><input type="text" placeholder="@Model.Number" disabled="disabled" /></p>
+    <label>Ilość siedzeń</label>
+    <p><input type="text" placeholder="@Model.NumberOfSeats" disabled="disabled" /></p>
+
+    <p><input type="submit" class="btn btn-primary" value="Potwierdź" /></p>
+
+</form>
+
