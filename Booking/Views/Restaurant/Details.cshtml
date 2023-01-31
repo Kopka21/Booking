@@ -33,7 +33,7 @@
                 <td>@item.Number</td>
                 @if(@item.Status == true)
                 {
-                    <td style="color:gree n">Wolne</td>
+                    <td style="color:green">Wolne</td>
 
                 }
                 else
@@ -42,8 +42,11 @@
                 }
                 <td>
                         <a class="btn btn-primary" asp-controller="Table"  asp-route-Id="@item.Id" asp-action="Edit"> Edit</a>
-                        <a class="btn btn-danger" asp-controller="Table"  asp-route-Id="@item.Id" asp-action="Delete"> Delete</a>
-                        <a class="btn btn-danger" asp-controller="Table"  asp-route-Id="@item.Id" asp-action="DeleteBooking"> Delete</a>
+                        <a class="btn btn-danger" asp-controller="Table"  asp-route-Id="@item.Id" asp-action="Delete"> Delete Table</a>
+                    @if (item.Status == false)
+                    {
+                        <a class="btn btn-danger" asp-controller="Table" asp-route-Id="@item.Id" asp-action="DeleteBooking"> Delete Reservation</a>
+                    }
             </tr>
         }
     </tbody>
