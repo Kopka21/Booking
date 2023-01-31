@@ -4,18 +4,16 @@ using Booking.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Booking.Data.Migrations
+namespace Booking.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230124225327_init")]
-    partial class init
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +39,8 @@ namespace Booking.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TableId");
+                    b.HasIndex("TableId")
+                        .IsUnique();
 
                     b.ToTable("Reservations");
                 });
@@ -312,8 +311,8 @@ namespace Booking.Data.Migrations
             modelBuilder.Entity("Booking.Models.Reservation", b =>
                 {
                     b.HasOne("Booking.Models.Table", "Table")
-                        .WithMany()
-                        .HasForeignKey("TableId")
+                        .WithOne("Reservation")
+                        .HasForeignKey("Booking.Models.Reservation", "TableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -397,6 +396,12 @@ namespace Booking.Data.Migrations
             modelBuilder.Entity("Booking.Models.Restaurant", b =>
                 {
                     b.Navigation("Tables");
+                });
+
+            modelBuilder.Entity("Booking.Models.Table", b =>
+                {
+                    b.Navigation("Reservation")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

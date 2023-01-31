@@ -144,7 +144,7 @@ namespace Booking.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
                     var newUser = await _userManager.FindByNameAsync(Input.Email);
 
-                    await _userManager.AddToRoleAsync(newUser, "user");
+                    await _userManager.AddToRoleAsync(newUser, "admin");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

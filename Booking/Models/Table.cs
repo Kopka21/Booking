@@ -19,5 +19,7 @@ namespace Booking.Models
         public int Number { get; set; }
 
         public virtual Restaurant Restaurant { get; set; }
+
+        public virtual Reservation Reservation { get; set; }
     }
 }
